@@ -77,6 +77,8 @@ class TestScreen extends StatelessWidget {
   }
 
   Widget _answer({ required BuildContext context, required String answerA, required String answerB }) {
+    const ts =  TextStyle(fontSize: 18.0);
+
     return SizedBox(
       height: (MediaQuery.of(context).size.height / 2) - 150,
       child: Column(
@@ -95,12 +97,7 @@ class TestScreen extends StatelessWidget {
               }, 
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  answerA,
-                  style: const TextStyle(
-                    fontSize: 18.0
-                  ),
-                ),
+                child: Text(answerA, style:ts),
               )
             )
           ),
@@ -116,14 +113,11 @@ class TestScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   answerB, 
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 18.0
-                  ),
+                  style: ts.copyWith(color: Colors.black)
                 ),
-              )
+              ),
             )
-          ),
+          )
         ],
       ),
     );
