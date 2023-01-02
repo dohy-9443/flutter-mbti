@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mbti/components/transition_button.dart';
+import 'package:mbti/screen/test_screen.dart';
+import 'package:transition/transition.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,28 +20,16 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _testStartButton() {
-    return Positioned(
+    return const Positioned(
       bottom: 50,
       left: 0,
       right: 0,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: SizedBox(
-          height: 50.0,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFF86B74),
-            ),
-            onPressed: () {}, 
-            child: const Text(
-              '테스트 시작하기',
-              style: TextStyle(
-                fontSize: 20.0
-              ),
-            )
-          ),
-        ),
-      ),
+      child: TransitionButton(
+        transitionEffect: TransitionEffect.FADE, 
+        title: '테스트 시작하기', 
+        screen: TestScreen(), 
+        color: Color(0xFFF86B74)
+      )
     );
   }
 
