@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mbti/constants/colors.dart';
+import 'package:mbti/screen/result_screen.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class TestScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class TestScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: const Text('짱구 MBtI 테스트'),
+        title: const Text('짱구 MBTI 테스트'),
       ),
       drawer:Drawer(
         backgroundColor: primaryColor,
@@ -87,7 +88,11 @@ class TestScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor
               ),
-              onPressed: () {}, 
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => ResultScreen())
+                );
+              }, 
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
