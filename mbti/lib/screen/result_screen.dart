@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:mbti/screen/loading_screen.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key});
+  final String result;
+  final int jp;
+  const ResultScreen({super.key, required this.result, required this.jp});
 
   @override
   Widget build(BuildContext context) {
+    print('result: $result');
 
     return FutureBuilder<Object>(
       future: delayScreen(),
@@ -18,7 +21,7 @@ class ResultScreen extends StatelessWidget {
 
         return Scaffold(
           body: Center(
-            child: Text('결과페이지'),
+            child: Text('결과페이지 $result 이고 $jp 임'),
           ),
         );
       }

@@ -73,4 +73,10 @@ List<QuestionModel> question_answer = [
     "answerA": "철저하게 계획을 짜서 가야지!",
     "answerB": "계획이 뭐가 중요해 그냥 가는거지~"
   }),
+  QuestionModel.fromMap({
+    "title": "여행을 간다면",
+    "type": "JP",
+    "answerA": "철저하게 계획을 짜서 가야지!",
+    "answerB": "계획이 뭐가 중요해 그냥 가는거지~"
+  }),
 ];

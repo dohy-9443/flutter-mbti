@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).push(
               Transition(
-                child: const TestScreen(),
+                child: TestScreen(),
                 transitionEffect: TransitionEffect.FADE,
               )
             );

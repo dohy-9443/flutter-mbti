@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mbti/components/transition_button.dart';
 import 'package:mbti/constants/colors.dart';
+import 'package:mbti/constants/mbti_data.dart';
+import 'package:mbti/constants/result_data.dart';
+import 'package:mbti/models/qustion_model.dart';
 import 'package:mbti/screen/result_screen.dart';
+import 'package:mbti/utils/data_utils.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class TestScreen extends StatefulWidget {
-  const TestScreen({super.key});
+  
+  int count = -1;
+  int ei = 0;
+  int sn = 0;
+  int tf = 0;
+  int jp = 0;
+
+  TestScreen({super.key});
+  
 
   @override
   State<TestScreen> createState() => _TestScreenState();
@@ -14,9 +26,13 @@ class TestScreen extends StatefulWidget {
 class _TestScreenState extends State<TestScreen> {
   @override
   Widget build(BuildContext context) {
-    const String question = '곧 크리스마스!\n회사에서 크리스마스 파티 스텝을 모집한다는데?';
-    const String answer1 = '파티 스텝은 못하지ㅎ...\n(그래도 파티는 재밌겠다 히히)';
-    const String answer2 = '재밌겠다!\n○○한테 같이 지원하자고 해야지~';
+    final QuestionModel question = DataUtils.getQuestion(number: widget.count + 1);
+
+    print('count: ${widget.count}');
+    print('ei: ${widget.ei}');
+    print('sn: ${widget.sn}');
+    print('tf: ${widget.tf}');
+    print('jp: ${widget.jp}');
     
     return Scaffold(
       appBar: AppBar(
@@ -38,22 +54,89 @@ class _TestScreenState extends State<TestScreen> {
           children: [
             LinearPercentIndicator(
               padding: EdgeInsets.zero,
-              percent: 0.084,
+              percent: (widget.count + 1) / 12,
               progressColor: primaryColor,
               lineHeight: 10,
             ),
             const SizedBox(height: 30.0),
             _question(context: context, question: question),
             const SizedBox(height: 30.0),
-            _answer(context: context, answerA: answer1, answerB: answer2)
+            _answer(
+              context: context, 
+              answerA: question.answerA, 
+              answerB: question.answerB,
+              answerAonPressed: () => answerAonPressed(question.type),
+              answerBonPressed: countUp,
+            )
           ],
         ),
       )
     );
   }
 
+  void countUp() {
+    String mbti = '';
+    if (widget.count < 11) {
+      setState(() {
+        widget.count++;
+      });
+    }
+
+    if (widget.count == 11) {
+
+      if (widget.ei > 1) {
+        mbti = '${mbti}E';
+      } else {
+        mbti = '${mbti}I';
+      }
+      if (widget.sn > 1) {
+        mbti = '${mbti}S';
+      } else {
+        mbti = '${mbti}N';
+      }
+      if (widget.tf > 1) {
+        mbti = '${mbti}T';
+      } else {
+        mbti = '${mbti}F';
+      }
+      if (widget.jp > 1) {
+        mbti = '${mbti}J';
+      } else {
+        mbti = '${mbti}P';
+      }
+
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => ResultScreen(result: mbti, jp: widget.jp))
+      );
+    }
+  }
+
+  void answerAonPressed(type) {
+    if (type == QuestionType.EI) {
+      setState(() {
+        widget.ei += 1;
+      });
+    }
+    if (type == QuestionType.SN) {
+      setState(() {
+        widget.sn += 1;
+      });
+    }
+    if (type == QuestionType.TF) {
+      setState(() {
+        widget.tf += 1;
+      });
+    }
+    if (type == QuestionType.JP) {
+      setState(() {
+        widget.jp += 1;
+      });
+    }
+    countUp();
+  }
+
   Widget _question({
-    required String question, required BuildContext context
+    required QuestionModel question, required BuildContext context
   }) {
     return SizedBox(
       height: (MediaQuery.of(context).size.height / 2) - 150,
@@ -69,7 +152,7 @@ class _TestScreenState extends State<TestScreen> {
           padding: const EdgeInsets.all(10.0),
           child: Center(
             child: Text(
-              question,
+              question.title,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 20.0,
@@ -82,7 +165,13 @@ class _TestScreenState extends State<TestScreen> {
     );
   }
 
-  Widget _answer({ required BuildContext context, required String answerA, required String answerB }) {
+  Widget _answer({ 
+    required BuildContext context, 
+    required String answerA, 
+    required String answerB,
+    required VoidCallback answerAonPressed,
+    required VoidCallback answerBonPressed,
+  }) {
     const ts =  TextStyle(fontSize: 18.0);
 
     return SizedBox(
@@ -96,11 +185,7 @@ class _TestScreenState extends State<TestScreen> {
               title: answerA, 
               textStyle: ts,
               color: primaryColor, 
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => ResultScreen())
-                );
-              }, 
+              onPressed: answerAonPressed,
             )
           ),
           const SizedBox(height: 16.0),
@@ -110,11 +195,7 @@ class _TestScreenState extends State<TestScreen> {
               title: answerB, 
               textStyle: ts.copyWith(color: Colors.black),
               color: secondaryColor, 
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => ResultScreen())
-                );
-              }, 
+              onPressed: answerBonPressed, 
             )
           )
         ],
