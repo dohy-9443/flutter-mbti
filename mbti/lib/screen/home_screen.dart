@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbti/components/background_block.dart';
 import 'package:mbti/components/transition_button.dart';
 import 'package:mbti/constants/colors.dart';
 import 'package:mbti/screen/test_screen.dart';
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          _backgroundBlock(),
+          const BackgroundBlock(),
           Image.asset('asset/img/background.jpeg'),
           Positioned(
             top: 200,
@@ -69,23 +70,6 @@ class HomeScreen extends StatelessWidget {
           color: primaryColor
         ),
       )
-    );
-  }
-
-  Widget _backgroundBlock() {
-    return Column(
-      children: [
-        Expanded(
-          child: Container(
-            color: primaryColor,
-          ),
-        ),
-        Expanded(
-          child: Container(
-            color: secondaryColor,
-          ),
-        )
-      ]
     );
   }
 

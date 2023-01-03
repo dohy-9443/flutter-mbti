@@ -5,6 +5,7 @@ import 'package:mbti/models/qustion_model.dart';
 import 'package:mbti/screen/result_screen.dart';
 import 'package:mbti/utils/data_utils.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:transition/transition.dart';
 
 class TestScreen extends StatefulWidget {
   
@@ -104,7 +105,10 @@ class _TestScreenState extends State<TestScreen> {
       }
 
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (_) => ResultScreen(result: mbti, jp: widget.jp))
+        Transition(
+          child: ResultScreen(result: mbti, jp: widget.jp),
+          transitionEffect: TransitionEffect.FADE,
+        )
       );
     }
   }

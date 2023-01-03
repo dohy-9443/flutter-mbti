@@ -13,6 +13,8 @@ class QuestionModel {
   final String answerA;
   final String answerB;
 
+  // named constructor
+
   QuestionModel.fromMap(Map<String, dynamic> map):
     title = map['title'],
     type = parseQuestionType(map['type']),
