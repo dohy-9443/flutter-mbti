@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mbti/constants/result_data.dart';
+import 'package:mbti/models/result_contents_model.dart';
+import 'package:mbti/models/result_model.dart';
 import 'package:mbti/screen/loading_screen.dart';
+import 'package:mbti/utils/data_utils.dart';
 
 class ResultScreen extends StatelessWidget {
   final String result;
@@ -8,7 +12,12 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('result: $result');
+    final ResultContentsModel mbtiResult = DataUtils.getResult(result: result);
+
+    print('name: ${mbtiResult.name}');
+    print('contents: ${mbtiResult.contents}');
+    print('path: ${mbtiResult.path}');
+
 
     return FutureBuilder<Object>(
       future: delayScreen(),

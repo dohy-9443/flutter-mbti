@@ -1,7 +1,7 @@
 import 'package:mbti/models/result_contents_model.dart';
 import 'package:mbti/models/result_model.dart';
 
-Map result = {
+Map resultData = {
   ResultType.ISTJ: ResultContentsModel.fromMap({
     "name": "현실 주의 채성아 선생님",
     "contents":

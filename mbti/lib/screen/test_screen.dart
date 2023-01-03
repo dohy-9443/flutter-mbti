@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mbti/components/transition_button.dart';
 import 'package:mbti/constants/colors.dart';
-import 'package:mbti/constants/mbti_data.dart';
-import 'package:mbti/constants/result_data.dart';
 import 'package:mbti/models/qustion_model.dart';
 import 'package:mbti/screen/result_screen.dart';
 import 'package:mbti/utils/data_utils.dart';
