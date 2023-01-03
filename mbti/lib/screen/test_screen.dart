@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mbti/components/transition_button.dart';
 import 'package:mbti/constants/colors.dart';
 import 'package:mbti/screen/result_screen.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class TestScreen extends StatelessWidget {
+class TestScreen extends StatefulWidget {
   const TestScreen({super.key});
 
+  @override
+  State<TestScreen> createState() => _TestScreenState();
+}
+
+class _TestScreenState extends State<TestScreen> {
   @override
   Widget build(BuildContext context) {
     const String question = '곧 크리스마스!\n회사에서 크리스마스 파티 스텝을 모집한다는데?';
@@ -86,36 +92,29 @@ class TestScreen extends StatelessWidget {
         children: [
           SizedBox(
             height: 70.0,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor
-              ),
+            child: TransitionButton(
+              title: answerA, 
+              textStyle: ts,
+              color: primaryColor, 
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (_) => ResultScreen())
                 );
               }, 
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(answerA, style:ts),
-              )
             )
           ),
           const SizedBox(height: 16.0),
           SizedBox(
             height: 70.0,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: secondaryColor
-              ),
-              onPressed: () {}, 
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  answerB, 
-                  style: ts.copyWith(color: Colors.black)
-                ),
-              ),
+            child: TransitionButton(
+              title: answerB, 
+              textStyle: ts.copyWith(color: Colors.black),
+              color: secondaryColor, 
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => ResultScreen())
+                );
+              }, 
             )
           )
         ],

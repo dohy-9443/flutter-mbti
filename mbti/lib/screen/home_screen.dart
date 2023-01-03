@@ -9,6 +9,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Stack(
         children: [
@@ -39,22 +40,34 @@ class HomeScreen extends StatelessWidget {
               ],
             )
           ),
-          _testStartButton()
+          _testStartButton(context: context)
         ]
       ),
     );
   }
 
-  Widget _testStartButton() {
-    return const Positioned(
+  Widget _testStartButton({ required BuildContext context }) {
+    return Positioned(
       bottom: 50,
       left: 0,
       right: 0,
-      child: TransitionButton(
-        transitionEffect: TransitionEffect.FADE, 
-        title: '테스트 시작하기', 
-        screen: TestScreen(), 
-        color: primaryColor
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: TransitionButton(
+          title: '테스트 시작하기',
+          textStyle: const TextStyle(
+              fontSize: 20.0
+            ),
+          onPressed: () {
+            Navigator.of(context).push(
+              Transition(
+                child: const TestScreen(),
+                transitionEffect: TransitionEffect.FADE,
+              )
+            );
+          }, 
+          color: primaryColor
+        ),
       )
     );
   }
