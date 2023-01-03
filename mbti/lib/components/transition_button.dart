@@ -19,6 +19,7 @@ class TransitionButton extends StatelessWidget {
         onPressed: onPressed, 
         child: Text(
           title,
+          textAlign: TextAlign.center,
           style: textStyle,
         )
       )

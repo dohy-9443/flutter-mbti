@@ -16,11 +16,6 @@ class ResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final ResultContentsModel mbtiResult = DataUtils.getResult(result: result);
 
-    print('name: ${mbtiResult.name}');
-    print('contents: ${mbtiResult.contents}');
-    print('path: ${mbtiResult.path}');
-
-
     return FutureBuilder<Object>(
       future: delayScreen(),
       builder: (context, snapshot) {
@@ -46,7 +41,7 @@ class ResultScreen extends StatelessWidget {
                 icon: const Icon(Icons.home, size: 30.0,)
               )
             ],
-            title: const Text('짱구 MBTI 테스트'),
+            title: Text(mbtiResult.name),
           ),
           drawer:Drawer(
             backgroundColor: primaryColor,

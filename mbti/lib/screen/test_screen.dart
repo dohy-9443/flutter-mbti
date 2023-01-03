@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mbti/components/transition_button.dart';
 import 'package:mbti/constants/colors.dart';
 import 'package:mbti/models/qustion_model.dart';
+import 'package:mbti/screen/home_screen.dart';
 import 'package:mbti/screen/result_screen.dart';
 import 'package:mbti/utils/data_utils.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -35,8 +36,22 @@ class _TestScreenState extends State<TestScreen> {
     
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: primaryColor,
         title: const Text('짱구 MBTI 테스트'),
+        backgroundColor: primaryColor,
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                Transition(
+                  child: const HomeScreen(),
+                  transitionEffect: TransitionEffect.FADE,
+                )
+              );
+            }, 
+            icon: const Icon(Icons.home, size: 30.0,)
+          )
+        ],
       ),
       drawer:Drawer(
         backgroundColor: primaryColor,
@@ -174,7 +189,7 @@ class _TestScreenState extends State<TestScreen> {
     required VoidCallback answerAonPressed,
     required VoidCallback answerBonPressed,
   }) {
-    const ts =  TextStyle(fontSize: 18.0);
+    const ts =  TextStyle(fontSize: 16.0);
 
     return SizedBox(
       height: (MediaQuery.of(context).size.height / 2) - 150,
