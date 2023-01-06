@@ -46,10 +46,31 @@ class DataUtils {
       case 'ENTJ':
         return resultData[ResultType.ENTJ];
     }
-
-
-
     return resultData[result];
   }
+
+  static List resultName() {
+    List names = [];
+
+    for (ResultType type in resultData.keys.toList()) {
+      names.add(type.name);
+    }
+
+    return names;
+  }
+
+  static List resultList() {
+    List names = resultName();
+    
+    List result = [];
+
+    for (String name in names) {
+      ResultContentsModel mbtiName = getResult(result: name);
+      result.add(mbtiName);
+    }
+
+    return result;
+  }
+
 
 }

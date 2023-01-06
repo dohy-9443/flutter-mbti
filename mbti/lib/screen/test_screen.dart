@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbti/components/main_drawer.dart';
 import 'package:mbti/components/transition_button.dart';
 import 'package:mbti/constants/colors.dart';
 import 'package:mbti/models/qustion_model.dart';
@@ -27,12 +28,6 @@ class _TestScreenState extends State<TestScreen> {
   @override
   Widget build(BuildContext context) {
     final QuestionModel question = DataUtils.getQuestion(number: widget.count + 1);
-
-    print('count: ${widget.count}');
-    print('ei: ${widget.ei}');
-    print('sn: ${widget.sn}');
-    print('tf: ${widget.tf}');
-    print('jp: ${widget.jp}');
     
     return Scaffold(
       appBar: AppBar(
@@ -53,14 +48,7 @@ class _TestScreenState extends State<TestScreen> {
           )
         ],
       ),
-      drawer:Drawer(
-        backgroundColor: primaryColor,
-        child: ListView(
-          children: [
-            DrawerHeader(child: Text('테스트'))
-          ],
-        ),
-      ),
+      drawer: const MainDrawer(),
       body: Padding(
         padding: const EdgeInsets.only(top: 30.0, left: 16.0, right: 16.0),
         child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mbti/components/background_block.dart';
+import 'package:mbti/components/main_drawer.dart';
 import 'package:mbti/constants/colors.dart';
 import 'package:mbti/models/result_contents_model.dart';
 import 'package:mbti/screen/home_screen.dart';
@@ -9,8 +10,8 @@ import 'package:transition/transition.dart';
 
 class ResultScreen extends StatelessWidget {
   final String result;
-  final int jp;
-  const ResultScreen({super.key, required this.result, required this.jp});
+  final int? jp;
+  const ResultScreen({super.key, required this.result, this.jp});
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +44,7 @@ class ResultScreen extends StatelessWidget {
             ],
             title: Text(mbtiResult.name),
           ),
-          drawer:Drawer(
-            backgroundColor: primaryColor,
-            child: ListView(
-              children: [
-                DrawerHeader(child: Text('테스트'))
-              ],
-            ),
-          ),
+          drawer: const MainDrawer(),
           body: Stack(
             children: [
               const BackgroundBlock(),
