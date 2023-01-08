@@ -51,8 +51,8 @@ class ResultScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(
                   top: kTextTabBarHeight,
-                  left: 16.0,
-                  right: 16.0
+                  left: 20.0,
+                  right: 20.0
                 ),
                 child: Column(
                   children: [
@@ -63,12 +63,12 @@ class ResultScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 25.0,
+                          fontSize: 34.0,
                           fontWeight: FontWeight.w700
                         ),
                       ),
                     ),
-                    const SizedBox(height: 50.0),
+                    const SizedBox(height: 30.0),
                     Container(
                       width: 200.0,
                       height: 200.0,
@@ -82,7 +82,14 @@ class ResultScreen extends StatelessWidget {
                     const SizedBox(height: 70.0),
                     Expanded(
                       child: SingleChildScrollView(
-                        child: Text(mbtiResult.contents, style: const TextStyle(fontSize: 18.0)),
+                        child: Text(
+                          mbtiResult.contents, 
+                          style: const TextStyle(
+                            fontSize: 18.0,
+                            height: 1.6,
+                            letterSpacing: 0.2
+                          )
+                        ),
                       ),
                     ),
                     const SizedBox(height: 32.0),
