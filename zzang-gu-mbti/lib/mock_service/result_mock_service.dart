@@ -8,6 +8,7 @@ import 'package:zzang_gu_mbti/domain/models/models.dart';
 class ResultMockService {
   late final ResultListModel _resultListModel;
   late ResultDetail _resultDetail = ResultDetail(type: '', detail: ResultContent(name: '', contents: '', path: ''));
+  // late final ResultDetail _resultDetail;
 
   void loadResult() async {
     final jsonStr = await rootBundle.loadString('asset/data/result.json');

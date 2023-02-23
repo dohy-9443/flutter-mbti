@@ -43,7 +43,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
           children: [
             LinearPercentIndicator(
               padding: EdgeInsets.zero,
-              percent: widget.count / 12,
+              percent: (widget.count + 1) / 12,
               progressColor: PRIMARY_COLOR,
               lineHeight: 10,
             ),
@@ -65,6 +65,26 @@ class _QuestionScreenState extends State<QuestionScreen> {
           ],
         ),
       )
+    );
+  }
+
+  Widget _body({required Question question}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        QuestionTitle(title: question.title),
+        const SizedBox(height: 30.0),
+        QuestionAnswer(
+          answerA: question.answerA,
+          answerB: question.answerB,
+          onPressedA: () {
+            countUpA(question);
+          },
+          onPressedB: () {
+            countUpB(question);
+          },
+        )
+      ],
     );
   }
 
@@ -171,26 +191,4 @@ class _QuestionScreenState extends State<QuestionScreen> {
       }
     });
   }
-
-  Widget _body({required Question question}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        QuestionTitle(title: question.title),
-        const SizedBox(height: 30.0),
-        QuestionAnswer(
-          answerA: question.answerA,
-          answerB: question.answerB,
-          onPressedA: () {
-            countUpA(question);
-          },
-          onPressedB: () {
-            countUpB(question);
-          },
-        )
-      ],
-    );
-  }
-
-
 }
