@@ -69,110 +69,107 @@ class _QuestionScreenState extends State<QuestionScreen> {
   }
 
   void countUpA(Question question) {
-      setState(() {
-        if (question.type == 'EI') {
-          widget.ei++;
-          widget.count++;
-          if (widget.count == 3) {
-            if (widget.ei >= 2) {
-              widget.mbti += 'E';
-            } else {
-              widget.mbti += 'I';
-            }
-          }
-        }
-        if (question.type == 'SN') {
-          widget.sn++;
-          widget.count++;
-          if (widget.count == 6) {
-            if (widget.sn >= 2) {
-              widget.mbti += 'S';
-            } else {
-              widget.mbti += 'N';
-            }
-          }
-        }
-        if (question.type == 'TF') {
-          widget.tf++;
-          widget.count++;
-          if (widget.count == 9) {
-            if (widget.tf >= 2) {
-              widget.mbti += 'T';
-            } else {
-              widget.mbti += 'F';
-            }
-          }
-        }
-        if (question.type == 'JP') {
-          widget.jp++;
-          if (widget.count < 11) {
-            widget.count++;
+    setState(() {
+      if (question.type == 'EI') {
+        widget.ei++;
+        widget.count++;
+        if (widget.count == 3) {
+          if (widget.ei >= 2) {
+            widget.mbti += 'E';
           } else {
-            if (widget.jp >= 2) {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => ResultScreen(result: '${widget.mbti}J'))
-              );
-            } else {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => ResultScreen(result: '${widget.mbti}P'))
-              );
-            }
+            widget.mbti += 'I';
           }
         }
-      });
+      }
+      if (question.type == 'SN') {
+        widget.sn++;
+        widget.count++;
+        if (widget.count == 6) {
+          if (widget.sn >= 2) {
+            widget.mbti += 'S';
+          } else {
+            widget.mbti += 'N';
+          }
+        }
+      }
+      if (question.type == 'TF') {
+        widget.tf++;
+        widget.count++;
+        if (widget.count == 9) {
+          if (widget.tf >= 2) {
+            widget.mbti += 'T';
+          } else {
+            widget.mbti += 'F';
+          }
+        }
+      }
+      if (question.type == 'JP') {
+        widget.jp++;
+        if (widget.count < 11) {
+          widget.count++;
+        } else {
+          if (widget.jp >= 2) {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => ResultScreen(result: '${widget.mbti}J'))
+            );
+          } else {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => ResultScreen(result: '${widget.mbti}P'))
+            );
+          }
+        }
+      }
+    });
   }
 
   void countUpB(Question question) {
-      setState(() {
-        if (question.type == 'EI') {
+    setState(() {
+      if (question.type == 'EI') {
+        widget.count++;
+        if (widget.count == 3) {
+          if (widget.ei >= 2) {
+            widget.mbti += 'E';
+          } else {
+            widget.mbti += 'I';
+          }
+        }
+      }
+      if (question.type == 'SN') {
+        widget.count++;
+        if (widget.count == 6) {
+          if (widget.sn >= 2) {
+            widget.mbti += 'S';
+          } else {
+            widget.mbti += 'N';
+          }
+        }
+      }
+      if (question.type == 'TF') {
+        widget.count++;
+        if (widget.count == 9) {
+          if (widget.tf >= 2) {
+            widget.mbti += 'T';
+          } else {
+            widget.mbti += 'F';
+          }
+        }
+      }
+      if (question.type == 'JP') {
+        if (widget.count < 11) {
           widget.count++;
-          if (widget.count < 3) {
+        } else {
+          if (widget.jp >= 2) {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => ResultScreen(result: '${widget.mbti}J'))
+            );
           } else {
-            if (widget.ei >= 2) {
-              widget.mbti += 'E';
-            } else {
-              widget.mbti += 'I';
-            }
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => ResultScreen(result: '${widget.mbti}P'))
+            );
           }
         }
-        if (question.type == 'SN') {
-          widget.count++;
-          if (widget.count < 6) {
-          } else {
-            if (widget.sn >= 2) {
-              widget.mbti += 'S';
-            } else {
-              widget.mbti += 'N';
-            }
-          }
-        }
-        if (question.type == 'TF') {
-          widget.count++;
-          if (widget.count < 9) {
-          } else {
-            if (widget.tf >= 2) {
-              widget.mbti += 'T';
-            } else {
-              widget.mbti += 'F';
-            }
-          }
-        }
-        if (question.type == 'JP') {
-          if (widget.count < 11) {
-            widget.count++;
-          } else {
-            if (widget.jp >= 2) {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => ResultScreen(result: '${widget.mbti}J'))
-              );
-            } else {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => ResultScreen(result: '${widget.mbti}P'))
-              );
-            }
-          }
-        }
-      });
+      }
+    });
   }
 
   Widget _body({required Question question}) {
