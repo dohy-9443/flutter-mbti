@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transition/transition.dart';
 import 'package:zzang_gu_mbti/common/constants/colors.dart';
 import 'package:zzang_gu_mbti/common/main_drawer.dart';
-import 'package:zzang_gu_mbti/screen/home_screen.dart';
+import 'package:zzang_gu_mbti/presentation/home/home_screen.dart';
 
 class DefaultLayout extends StatelessWidget {
   final Widget title;

@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:collection/collection.dart';
 import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
@@ -7,7 +7,7 @@ import 'package:zzang_gu_mbti/domain/models/models.dart';
 
 class ResultMockService {
   late final ResultListModel _resultListModel;
-  late final ResultDetail _resultDetail;
+  late ResultDetail _resultDetail = ResultDetail(type: '', detail: ResultContent(name: '', contents: '', path: ''));
 
   void loadResult() async {
     final jsonStr = await rootBundle.loadString('asset/data/result.json');
@@ -34,11 +34,8 @@ class ResultMockService {
     );
   }
 
-  Future<Response<Result<ResultDetail>>> queryResult(
-      String mbti
-  ) {
-
-    _resultDetail = _resultListModel.resultList.firstWhere((e) => e.type == mbti);
+  Future<Response<Result<ResultDetail>>> queryResult({required String mbti}) {
+    _resultDetail = _resultListModel.resultList.firstWhereOrNull((e) => e.type == mbti)!;
 
     return Future.value(
       Response(

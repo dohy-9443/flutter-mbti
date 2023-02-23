@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zzang_gu_mbti/mock_service/question_mock_service.dart';
 import 'package:zzang_gu_mbti/mock_service/result_mock_service.dart';
-import 'package:zzang_gu_mbti/screen/home_screen.dart';
+import 'package:zzang_gu_mbti/presentation/home/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {

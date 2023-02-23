@@ -16,13 +16,14 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final ResultContentsModel mbtiResult = DataUtils.getResult(result: result);
-
+    print('result: $result');
     return DefaultLayout(
       title: Text(result),
-      body: FutureBuilder<Response<Result<ResultDetail>>>(
-        future: Provider.of<ResultMockService>(context).queryResult(result),
+      body:
+      FutureBuilder<Response<Result<ResultDetail>>>(
+        future: Provider.of<ResultMockService>(context).queryResult(mbti: result),
         builder: (context, snapshot) {
+
           if (snapshot.connectionState != ConnectionState.done) {
             return const LoadingScreen();
           }
@@ -61,6 +62,15 @@ class ResultScreen extends StatelessWidget {
         )
       ],
     );
+  }
+
+  Future<bool> delayScreen() async {
+    bool result = false;
+    await Future.delayed(Duration(seconds: 3));
+
+    result = true;
+
+    return result;
   }
 }
 
